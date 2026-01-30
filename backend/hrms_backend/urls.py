@@ -19,12 +19,17 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from employees.views import EmployeeViewSet
 from attendance.views import AttendanceViewSet
+from django.http import JsonResponse
+
+def health_check(request):
+    return JsonResponse({"status": "healthy", "message": "HRMS Backend is running!"})
 
 router = DefaultRouter()
 router.register(r'employees', EmployeeViewSet)
 router.register(r'attendance', AttendanceViewSet)
 
 urlpatterns = [
+    path('', health_check, name='health_check'),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
 ]
