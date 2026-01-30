@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["python3"]
+
+[phases.install]
+cmds = ["pip install -r backend/requirements.txt"]
+
+[phases.build]
+cmds = ["cd backend && python manage.py collectstatic --no-input"]
+
+[start]
+cmd = "cd backend && python manage.py migrate && gunicorn hrms_backend.wsgi:application --log-file -"
