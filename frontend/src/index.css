@@ -1,0 +1,323 @@
+:root {
+  /* Light Theme (Default) */
+  --primary: 99, 102, 241; /* Indigo 500 */
+  --primary-hover: 79, 70, 229;
+  
+  --bg-main: 248, 250, 252; /* Slate 50 */
+  --bg-card: 255, 255, 255;
+  --bg-input: 241, 245, 249; /* Slate 100 */
+  
+  --text-main: 15, 23, 42; /* Slate 900 */
+  --text-muted: 100, 116, 139; /* Slate 500 */
+  
+  --border: 226, 232, 240; /* Slate 200 */
+  
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.5);
+  
+  --danger: 239, 68, 68;
+  --success: 34, 197, 94;
+  --warning: 245, 158, 11;
+}
+
+[data-theme='dark'] {
+  --bg-main: 15, 23, 42; /* Slate 900 */
+  --bg-card: 30, 41, 59; /* Slate 800 */
+  --bg-input: 15, 23, 42; /* Slate 900 */
+  
+  --text-main: 248, 250, 252;
+  --text-muted: 148, 163, 184;
+  
+  --border: 51, 65, 85; /* Slate 700 */
+  
+  --glass-bg: rgba(30, 41, 59, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: rgb(var(--bg-main));
+  color: rgb(var(--text-main));
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.btn-primary {
+  background: rgb(var(--primary));
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: rgb(var(--primary-hover));
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: rgb(var(--bg-input));
+  color: rgb(var(--text-main));
+  border: 1px solid var(--border);
+}
+.btn-secondary:hover {
+  background: rgba(var(--primary), 0.1);
+}
+
+
+.btn-danger {
+  background: rgba(var(--danger), 0.1);
+  color: rgb(var(--danger));
+  border: 1px solid rgba(var(--danger), 0.2);
+}
+
+.btn-danger:hover {
+  background: rgba(var(--danger), 0.2);
+}
+
+/* Inputs */
+input, select, textarea {
+  background: rgb(var(--bg-input));
+  border: 1px solid var(--border);
+  padding: 0.75rem;
+  border-radius: 8px;
+  color: rgb(var(--text-main));
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: rgb(var(--primary));
+  box-shadow: 0 0 0 2px rgba(var(--primary), 0.1);
+}
+
+input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: rgb(var(--text-muted));
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 1rem;
+  color: rgb(var(--text-muted));
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  color: rgb(var(--text-main));
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Grid Layouts */
+.grid-layout {
+  display: grid;
+  grid-template-columns: minmax(350px, 1fr) 2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  :root {
+    --text-scale-ratio: 1.1;
+  }
+  
+  html {
+    font-size: 14px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .grid-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .container {
+    padding: 1rem;
+  }
+
+  /* Responsive Table using Cards for Mobile */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-card);
+    padding: 1rem;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  /* Specific handling for Employee Table */
+  /* We need generic handling or assume specific order. 
+     Since we can't easily target specific columns generically without data attributes, 
+     we will rely on flex layout for cells 
+  */
+  
+  td {
+    border: none;
+    position: relative;
+    padding: 0.5rem 0;
+    padding-left: 0;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--border);
+  }
+  
+  td:last-child {
+      border-bottom: none;
+      justify-content: flex-end;
+      margin-top: 0.5rem;
+  }
+  
+  /* Add labels via attr if possible, but for now simple flex */
+
+  .glass-panel {
+      padding: 1rem !important;
+  }
+  
+  .hide-mobile {
+      display: none;
+  }
+}
+
+/* Floating label input style enhancement */
+.input-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+/* Attractive Card Hover Effects */
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Gradient Background for "Attractive" feel */
+body {
+    background: radial-gradient(circle at top right, rgba(var(--primary), 0.05), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(var(--primary), 0.05), transparent 40%),
+                rgb(var(--bg-main));
+    background-attachment: fixed;
+}
+
+/* Loader */
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(var(--primary), 0.3);
+  border-radius: 50%;
+  border-top-color: rgb(var(--primary));
+  animation: spin 0.8s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
