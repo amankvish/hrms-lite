@@ -28,4 +28,4 @@ RUN python manage.py collectstatic --no-input
 EXPOSE 8000
 
 # Start command
-CMD sh -c "gunicorn hrms_backend.wsgi:application --bind 0.0.0.0:${PORT:-8000}"
+CMD sh -c "python manage.py migrate && gunicorn hrms_backend.wsgi:application --bind 0.0.0.0:${PORT:-8000}"
